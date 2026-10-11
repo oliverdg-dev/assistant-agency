@@ -1,0 +1,127 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens. See DESIGN.md for how they're used.
+ * Fonts are loaded in index.html (preconnect + Google Fonts link).
+ */
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Source Serif 4", Georgia, serif;
+
+  --breakpoint-xs: 23.4375rem; /* 375px */
+
+  --color-ink: #0f1f3a;
+  --color-ink-muted: #4a5568;
+  --color-ink-subtle: #5f6878;
+
+  --color-brand: #0047b3;
+  --color-brand-hover: #003a94;
+  --color-brand-tint: #eaf0fa;
+
+  --color-surface: #fafaf8;
+  --color-surface-2: #f3f2ee;
+  --color-paper: #ffffff;
+  --color-line: #e4e2dc;
+  --color-line-strong: #c9c5ba;
+
+  --color-success: #1a7f4b;
+  --color-success-tint: #e8f4ed;
+  --color-error: #b42318;
+  --color-error-tint: #fcebe9;
+
+  --color-inverse-muted: #c3cad6;
+  --color-inverse-link: #9cc0ff;
+
+  /* Legacy tokens, only used by the hidden Talent page (src/pages/Talent.tsx). */
+  --font-headline: var(--font-serif);
+  --color-primary: var(--color-brand);
+  --color-primary-container: var(--color-brand);
+  --color-on-primary: #ffffff;
+  --color-secondary: var(--color-ink-muted);
+  --color-secondary-container: var(--color-surface-2);
+  --color-on-secondary-container: var(--color-ink);
+  --color-tertiary: var(--color-ink-muted);
+  --color-surface-container-low: var(--color-surface-2);
+  --color-surface-container: var(--color-surface-2);
+  --color-surface-container-high: var(--color-line);
+  --color-surface-container-lowest: var(--color-paper);
+  --color-on-surface: var(--color-ink);
+  --color-on-surface-variant: var(--color-ink-muted);
+  --color-outline-variant: var(--color-line);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    @apply bg-surface text-ink font-sans antialiased;
+    accent-color: var(--color-brand);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-serif font-semibold text-ink;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  a {
+    text-underline-offset: 3px;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--color-brand) 20%, transparent);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 2px;
+  }
+
+  /* Headings receive focus after navigation; don't draw a ring on them. */
+  [tabindex="-1"]:focus {
+    outline: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* Short fade when the page changes (disabled for reduced motion above). */
+@keyframes page-enter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.page-enter {
+  animation: page-enter 200ms ease-out;
+}
+
+/* Legacy helpers, only used by the hidden Talent page. */
+.glass {
+  @apply bg-paper;
+}
+
+.ambient-shadow {
+  border: 1px solid var(--color-line);
+}

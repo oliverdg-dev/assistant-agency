@@ -1,0 +1,13 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "functions": {
+    "api/booking.ts": { "maxDuration": 30 },
+    "api/admin.ts": { "maxDuration": 30 },
+    "api/shortlist.ts": { "maxDuration": 30 }
+  },
+  "rewrites": [
+    { "source": "/api/admin/:path*", "destination": "/api/admin?path=:path*" },
+    { "source": "/api/shortlist/:path*", "destination": "/api/shortlist?path=:path*" },
+    { "source": "/((?!api/|assets/).*)", "destination": "/index.html" }
+  ]
+}

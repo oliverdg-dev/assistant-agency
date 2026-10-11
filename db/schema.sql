@@ -1,0 +1,7 @@
+-- Reference only. The schema is defined by db/migrations/*.sql, applied in
+-- order by `npm run db:migrate` (see README.md and docs/RUNBOOK.md).
+--
+-- booking_leads   one row per job request (form fields, status, source,
+--                 team-notification state)
+-- request_events  history of status changes and notes per request
+-- schema_migrations  which migration files have run, with checksums
